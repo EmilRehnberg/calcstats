@@ -1,0 +1,7 @@
+---
+name: calcstats
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - pytest>=5.3.2

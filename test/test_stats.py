@@ -1,12 +1,4 @@
-from calcstats.calc import (
-    count_nums,
-    data_range,
-    mean,
-    median,
-    mode,
-    quantile,
-    pad_w_zeros,
-)
+import calcstats
 
 
 def test_num_friends_length():
@@ -16,12 +8,12 @@ def test_num_friends_length():
 
 def test_count_nums():
     """ testing integer counter """
-    assert count_nums([1, 1, 2]) == {1: 2, 2: 1}, "returns a list of ints"
+    assert calcstats.count_nums([1, 1, 2]) == {1: 2, 2: 1}, "returns a list of ints"
 
 
 def test_pad_w_zeros():
     """ testing padding counter with zeros """
-    padded_num_friends = tuple(pad_w_zeros(count_nums(num_friends)))
+    padded_num_friends = tuple(calcstats.pad_w_zeros(calcstats.count_nums(num_friends)))
     assert (
         len(padded_num_friends) == 100 + 1
     ), "length is max of the numbers plus the zero"
@@ -32,32 +24,32 @@ def test_pad_w_zeros():
 
 def test_mean():
     """mean yields a resonable mean"""
-    assert 7.33 < mean(num_friends) < 7.34
+    assert 7.33 < calcstats.mean(num_friends) < 7.34
 
 
 def test_median():
     """median func yields the median"""
-    assert median([1, 10, 2, 9, 5]) == 5
-    assert median([1, 9, 2, 10]) == (2 + 9) / 2
-    assert median(num_friends) == 6
+    assert calcstats.median([1, 10, 2, 9, 5]) == 5
+    assert calcstats.median([1, 9, 2, 10]) == (2 + 9) / 2
+    assert calcstats.median(num_friends) == 6
 
 
 def test_quantile():
     """quantil func yields quantiles"""
-    assert quantile(num_friends, 0.10) == 1
-    assert quantile(num_friends, 0.25) == 3
-    assert quantile(num_friends, 0.75) == 9
-    assert quantile(num_friends, 0.90) == 13
+    assert calcstats.quantile(num_friends, 0.10) == 1
+    assert calcstats.quantile(num_friends, 0.25) == 3
+    assert calcstats.quantile(num_friends, 0.75) == 9
+    assert calcstats.quantile(num_friends, 0.90) == 13
 
 
 def test_mode():
     """mode func returns most common values"""
-    assert set(mode(num_friends)) == {1, 6}
+    assert set(calcstats.mode(num_friends)) == {1, 6}
 
 
 def test_data_range():
     """data range func returns the range"""
-    assert data_range(num_friends) == 99
+    assert calcstats.data_range(num_friends) == 99
 
 
 num_friends = [
